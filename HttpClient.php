@@ -15,24 +15,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		echo "error";
 	}else{
 		$params = json_decode($values['params'], null);
+		$headerArr = json_decode($values['headers'], null);
+		$header = '';
+		foreach($headerArr as $key => $val){
+			$header .= $key . ": " .$val . " \r\n";
+		}
 		$postdata = http_build_query(
 			$params
 		);
 		$opts = array('http' =>
 			array(
-				'method'  => 'OPTION',
-				'header'  => 'Content-type: application/x-www-form-urlencoded',
+				'method'  => $values['method'],
+				'header'  => $header,
 				'content' => $postdata
 			)
 		);
-		$res = post($opts, 'https://corednacom.corewebdna.com/assessment-endpoint.php');
-		var_dump($res);die;
+		$res = post($opts, $values['url']);
+		echo "Result : " . $res;
 	}
 }
 	
 function post($options, $url){
 	try {
-  
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		return $result;

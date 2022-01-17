@@ -13,8 +13,9 @@
 		<div>
             <label for="username">Method:</label>
             <select name="method">
-				<option value="post">POST</option>
-				<option value="get">GET</option>
+				<option value="OPTIONS">OPTIONS</option>
+				<option value="POST">POST</option>
+				<option value="GET">GET</option>
 			</select>
         </div>
         <div>
@@ -23,11 +24,11 @@
         </div>
         <div>
             <label for="email">Headers:</label>
-            <textarea placeholder="{'key':'value', 'key':'value'}" rows="5" name="headers"></textarea></div>
+            <textarea placeholder='{"key":"value", "key":"value"}' rows="5" name="headers"></textarea></div>
         </div>
         <div>
             <label for="password">Params:</label>
-            <textarea placeholder="{'key':'value', 'key':'value'}" rows="5" name="params"></textarea></div>
+            <textarea placeholder='{"key":"value", "key":"value"}' rows="5" name="params"></textarea></div>
         </div>
         <button type="submit">Submit</button>
     </form>
